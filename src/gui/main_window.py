@@ -53,17 +53,17 @@ class MainWindow(QMainWindow):
         refresh_btn = QPushButton("Refresh")
         add_btn = QPushButton("Add/Update")
         reset_btn = QPushButton("Reset Master Password")
-        quit_btn = QPushButton("Quit")
+        self.quit_button = QPushButton("Quit")
 
         refresh_btn.clicked.connect(self.load_creds)
         add_btn.clicked.connect(self.add_or_update_credential)
         reset_btn.clicked.connect(self.reset_master_password)
-        quit_btn.clicked.connect(self.close)
+        self.quit_button.clicked.connect(self.close)
 
         btn_layout.addWidget(refresh_btn)
         btn_layout.addWidget(add_btn)
         btn_layout.addWidget(reset_btn)
-        btn_layout.addWidget(quit_btn)
+        btn_layout.addWidget(self.quit_button)
 
         main_layout.addLayout(btn_layout)
 

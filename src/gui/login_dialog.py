@@ -28,12 +28,12 @@ class LoginDialog(QDialog):
 
         # Buttons
         btn_layout = QHBoxLayout()
-        login_btn = QPushButton("Login")
-        cancel_btn = QPushButton("Cancel")
-        login_btn.clicked.connect(self.handle_login)
-        cancel_btn.clicked.connect(self.handle_cancel)
-        btn_layout.addWidget(login_btn)
-        btn_layout.addWidget(cancel_btn)
+        self.login_btn = QPushButton("Login")
+        self.cancel_btn = QPushButton("Cancel")
+        self.login_btn.clicked.connect(self.handle_login)
+        self.cancel_btn.clicked.connect(self.handle_cancel)
+        btn_layout.addWidget(self.login_btn)
+        btn_layout.addWidget(self.cancel_btn)
         layout.addLayout(btn_layout)
 
         self.setLayout(layout)
