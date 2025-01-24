@@ -91,7 +91,7 @@ def reset_master_password():
     )
     print("\nMaster password successfully reset!\n")
 
-def _check_initial_setup():
+def _check_initial_setup(path: str = None):
     """
     Check if master/recovery hashes exist
     If not, ask user to create them and generate ephemeral key

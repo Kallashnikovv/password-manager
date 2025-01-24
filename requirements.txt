@@ -2,3 +2,7 @@ passlib
 cryptography
 bcrypt
 PyQt6
+
+pytest
+pytest-cov
+pytest-qt
