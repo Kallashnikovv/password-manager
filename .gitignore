@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+.vscode/
+
+# Project specific
+master.hash
+recovery.hash
+encrypted_key_master.bin
+encrypted_key_recovery.bin
+credentials.json
