@@ -91,34 +91,37 @@ def reset_master_password():
     )
     print("\nMaster password successfully reset!\n")
 
-def _check_initial_setup(path: str = None):
+# For testing capabilities
+def _check_initial_setup(master_hash_file=MASTER_HASH_FILE, recovery_hash_file=RECOVERY_HASH_FILE,
+                         encrypted_key_master_file=ENCRYPTED_KEY_MASTER_FILE, encrypted_key_recovery_file=ENCRYPTED_KEY_RECOVERY_FILE,
+                         credentials_file=CREDENTIALS_FILE):
     """
     Check if master/recovery hashes exist
     If not, ask user to create them and generate ephemeral key
     """
-    if os.path.exists(MASTER_HASH_FILE) and os.path.exists(RECOVERY_HASH_FILE):
+    if os.path.exists(master_hash_file) and os.path.exists(recovery_hash_file):
         return
 
     # Master password creation
     print("No master password found. Let's create one.")
     master_pw = prompt_for_new_password("MASTER")
-    store_passlib_hash(master_pw, MASTER_HASH_FILE)
+    store_passlib_hash(master_pw, master_hash_file)
 
     # Recovery password creation
     print("No recovery password found. Let's create one.")
     recovery_pw = prompt_for_new_password("RECOVERY")
-    store_passlib_hash(recovery_pw, RECOVERY_HASH_FILE)
+    store_passlib_hash(recovery_pw, recovery_hash_file)
 
     # Generate ephemeral key
     ephemeral_key = os.urandom(32)
 
     # Encrypt ephemeral key with both master and recovery
-    encrypt_ephemeral_key_with_password(ephemeral_key, master_pw, ENCRYPTED_KEY_MASTER_FILE)
-    encrypt_ephemeral_key_with_password(ephemeral_key, recovery_pw, ENCRYPTED_KEY_RECOVERY_FILE)
+    encrypt_ephemeral_key_with_password(ephemeral_key, master_pw, encrypted_key_master_file)
+    encrypt_ephemeral_key_with_password(ephemeral_key, recovery_pw, encrypted_key_recovery_file)
 
     # Create empty credentials file if needed
-    if not os.path.exists(CREDENTIALS_FILE):
-        with open(CREDENTIALS_FILE, 'wb') as f:
+    if not os.path.exists(credentials_file):
+        with open(credentials_file, 'wb') as f:
             f.write(b'')
 
     print("Initial setup complete!\n")
