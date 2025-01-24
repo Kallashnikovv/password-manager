@@ -9,16 +9,16 @@ from .config import (
     ENCRYPTED_KEY_RECOVERY_FILE,
     CREDENTIALS_FILE
 )
-from .user_auth import (
+from src.password_manager.user_auth import (
     prompt_for_new_password,
     store_passlib_hash,
     verify_passlib_password
 )
-from .ephemeral_key import (
+from src.password_manager.ephemeral_key import (
     decrypt_ephemeral_key_with_password,
     encrypt_ephemeral_key_with_password
 )
-from .credentials import load_credentials, save_credentials
+from src.password_manager.credentials import load_credentials, save_credentials
 
 
 def view_credentials(credentials: dict):

@@ -1,13 +1,15 @@
 import bcrypt
 
+# Without it Passlib will write in console AttributeError: module 'bcrypt' has no attribute '__about__'
+# Whether this is used or not it doesn't break the program
 def fix_bcrypt_version():
     """
     If the installed 'bcrypt' package doesn't define '__about__',
-    we insert a fake '__about__' with a version attribute so Passlib won't crash.
+    insert a fake '__about__' with a version attribute so Passlib won't write in console
     """
     if not hasattr(bcrypt, '__about__'):
         class about:
-            __version__ = "9.9.9" 
+            __version__ = "1.2.3" 
         bcrypt.__about__ = about
 
 fix_bcrypt_version()
